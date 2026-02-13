@@ -1,0 +1,6 @@
+@bibliosys.be.api_HostAddress = http://localhost:5269
+
+GET {{bibliosys.be.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

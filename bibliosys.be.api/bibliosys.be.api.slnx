@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="../bibliosys.be.application/bibliosys.be.application.csproj" />
+  <Project Path="../bibliosys.be.domain/bibliosys.be.domain.csproj" />
+  <Project Path="../bibliosys.be.infrastructure/bibliosys.be.infrastructure.csproj" />
+  <Project Path="bibliosys.be.api.csproj" />
+</Solution>
