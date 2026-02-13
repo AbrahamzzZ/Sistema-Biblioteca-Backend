@@ -20,7 +20,6 @@ namespace bibliosys.be.api.Controllers.v1
 
         public class LibroRequest
         {
-            public string Codigo { get; set; } = string.Empty;
             public string Titulo { get; set; } = string.Empty;
             public string Autor { get; set; } = string.Empty;
             public string? Editorial { get; set; }
@@ -28,6 +27,11 @@ namespace bibliosys.be.api.Controllers.v1
             public string? Genero { get; set; }
             public int Stock { get; set; }
             public string? Ubicacion { get; set; }
+        }
+
+        private string GenerarCodigo()
+        {
+            return $"LIB-{Guid.NewGuid().ToString("N")[..8].ToUpper()}";
         }
 
         [HttpGet]
@@ -54,7 +58,7 @@ namespace bibliosys.be.api.Controllers.v1
         {
             var libro = new Libro
             {
-                Codigo = request.Codigo,
+                Codigo = GenerarCodigo(),
                 Titulo = request.Titulo,
                 Autor = request.Autor,
                 Editorial = request.Editorial,
@@ -78,7 +82,6 @@ namespace bibliosys.be.api.Controllers.v1
                 return NotFound();
             }
 
-            libro.Codigo = request.Codigo;
             libro.Titulo = request.Titulo;
             libro.Autor = request.Autor;
             libro.Editorial = request.Editorial;
@@ -91,17 +94,16 @@ namespace bibliosys.be.api.Controllers.v1
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpPatch("{id}/desactivar")]
+        public async Task<IActionResult> Desactivar(int id)
         {
             var libro = await _libroRepository.GetByIdAsync(id);
             if (libro == null)
-            {
                 return NotFound();
-            }
 
             libro.Estado = false;
             await _libroRepository.UpdateAsync(libro);
+
             return NoContent();
         }
     }
