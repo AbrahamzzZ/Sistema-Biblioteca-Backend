@@ -82,17 +82,35 @@ namespace bibliosys.be.api.Controllers.v1
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpPatch("{id}/desactivar")]
+        public async Task<IActionResult> Desactivar(int id)
         {
             var usuario = await _usuarioRepository.GetByIdAsync(id);
             if (usuario == null)
-            {
                 return NotFound();
-            }
+
+            if (!usuario.Estado)
+                return NoContent();
 
             usuario.Estado = false;
             await _usuarioRepository.UpdateAsync(usuario);
+
+            return NoContent();
+        }
+
+        [HttpPatch("{id}/activar")]
+        public async Task<IActionResult> Activar(int id)
+        {
+            var usuario = await _usuarioRepository.GetByIdAsync(id);
+            if (usuario == null)
+                return NotFound();
+
+            if (usuario.Estado)
+                return NoContent();
+
+            usuario.Estado = true;
+            await _usuarioRepository.UpdateAsync(usuario);
+
             return NoContent();
         }
     }
