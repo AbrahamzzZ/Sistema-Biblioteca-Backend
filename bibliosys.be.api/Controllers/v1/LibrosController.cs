@@ -106,6 +106,19 @@ namespace bibliosys.be.api.Controllers.v1
 
             return NoContent();
         }
+
+        [HttpPatch("{id}/activar")]
+        public async Task<IActionResult> Activar(int id)
+        {
+            var libro = await _libroRepository.GetByIdAsync(id);
+            if (libro == null)
+                return NotFound();
+
+            libro.Estado = true;
+            await _libroRepository.UpdateAsync(libro);
+
+            return NoContent();
+        }
     }
 }
 
