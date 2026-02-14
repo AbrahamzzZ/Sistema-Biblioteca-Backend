@@ -8,11 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Interfaces\Service\" />
-    <Folder Include="Interfaces\Repository\" />
-    <Folder Include="Models\Response\" />
-    <Folder Include="Models\Request\" />
     <Folder Include="Services\" />
-    <Folder Include="Utils\Mapping\" />
   </ItemGroup>
 
   <ItemGroup>
