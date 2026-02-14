@@ -8,6 +8,7 @@ namespace bibliosys.be.domain.Repositories
     {
         Task<Usuario?> GetByIdAsync(int id);
         Task<IEnumerable<Usuario>> GetAllActivosAsync();
+        Task<IEnumerable<Usuario>> GetAllAsync();
         Task AddAsync(Usuario usuario);
         Task UpdateAsync(Usuario usuario);
     }

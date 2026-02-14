@@ -1,8 +1,9 @@
-using System.Threading.Tasks;
 using bibliosys.be.domain.Entity;
 using bibliosys.be.domain.Repositories;
+using bibliosys.be.infrastructure.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace bibliosys.be.api.Controllers.v1
 {
@@ -37,8 +38,15 @@ namespace bibliosys.be.api.Controllers.v1
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var libros = await _libroRepository.GetAllActivosAsync();
+            var libros = await _libroRepository.GetAllAsync();
             return Ok(libros);
+        }
+
+        [HttpGet("activos")]
+        public async Task<IActionResult> GetAllActivos()
+        {
+            var usuarios = await _libroRepository.GetAllActivosAsync();
+            return Ok(usuarios);
         }
 
         [HttpGet("{id}")]

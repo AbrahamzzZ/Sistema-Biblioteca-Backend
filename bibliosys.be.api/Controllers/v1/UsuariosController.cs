@@ -30,22 +30,27 @@ namespace bibliosys.be.api.Controllers.v1
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            var usuarios = await _usuarioRepository.GetAllAsync();
+            return Ok(usuarios);
+        }
+
+        [HttpGet("activos")]
+        public async Task<IActionResult> GetAllActivos()
+        {
             var usuarios = await _usuarioRepository.GetAllActivosAsync();
             return Ok(usuarios);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
-            var usuario = await _usuarioRepository.GetByIdAsync(id);
-            if (usuario == null || !usuario.Estado)
-            {
-                return NotFound();
-            }
-
+        [HttpGet("{id}")] 
+        public async Task<IActionResult> GetById(int id) { 
+            var usuario = await _usuarioRepository.GetByIdAsync(id); 
+            if (usuario == null || !usuario.Estado) 
+            { 
+                return NotFound(); 
+            } 
             return Ok(usuario);
         }
-
+        
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] UsuarioRequest request)
         {

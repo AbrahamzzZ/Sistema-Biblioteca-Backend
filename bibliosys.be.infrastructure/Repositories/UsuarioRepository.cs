@@ -29,6 +29,11 @@ namespace bibliosys.be.infrastructure.Repositories
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<Usuario>> GetAllAsync()
+        {
+            return await _context.Usuarios.ToListAsync();
+        }
+
         public async Task AddAsync(Usuario usuario)
         {
             _context.Usuarios.Add(usuario);

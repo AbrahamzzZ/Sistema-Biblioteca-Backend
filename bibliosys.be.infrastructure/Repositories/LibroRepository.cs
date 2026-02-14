@@ -29,6 +29,11 @@ namespace bibliosys.be.infrastructure.Repositories
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<Libro>> GetAllAsync()
+        {
+            return await _context.Libros.ToListAsync();
+        }
+
         public async Task AddAsync(Libro libro)
         {
             _context.Libros.Add(libro);

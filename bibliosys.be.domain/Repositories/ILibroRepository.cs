@@ -8,6 +8,7 @@ namespace bibliosys.be.domain.Repositories
     {
         Task<Libro?> GetByIdAsync(int id);
         Task<IEnumerable<Libro>> GetAllActivosAsync();
+        Task<IEnumerable<Libro>> GetAllAsync();
         Task AddAsync(Libro libro);
         Task UpdateAsync(Libro libro);
     }
